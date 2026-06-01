@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AC and Heat Repair LLC | Charlotte, NC HVAC Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b2a;
+      --blue: #1a6fa8;
+      --blue-light: #2489cc;
+      --gold: #f5a623;
+      --white: #ffffff;
+      --off-white: #f8f9fb;
+      --text: #1c1c1e;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* PREVIEW BANNER */
+    #preview-banner {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      font-size: 0.78rem;
+      padding: 8px 1rem;
+      letter-spacing: 0.03em;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10000;
+    }
+    #preview-banner a {
+      color: #f5a623;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 32px;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 4%;
+      transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease;
+    }
+    nav.scrolled {
+      background: rgba(13, 27, 42, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .nav-logo span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-phone {
+      color: #fff !important;
+      font-weight: 600 !important;
+    }
+    .nav-cta {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.3rem;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .nav-cta:hover { background: var(--blue-light); }
+
+    /* HERO */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: -10%;
+      background-image: url('https://images.unsplash.com/photo-1581093588401-3b8e6b3e1b1f?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      animation: heroZoom 18s ease-in-out infinite alternate;
+      filter: brightness(0.38);
+    }
+    @keyframes heroZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.1); }
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(13,27,42,0.35) 0%, rgba(13,27,42,0.65) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      padding: 0 1.5rem;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(26, 111, 168, 0.8);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.1rem;
+      border-radius: 50px;
+      margin-bottom: 1.3rem;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.18;
+      margin-bottom: 1.1rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 580px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.7);
+      padding: 0.9rem 2rem;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      font-family: 'DM Sans', sans-serif;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+    /* TRUST BAR */
+    #trust-bar {
+      background: var(--navy);
+      padding: 2.5rem 4%;
+    }
+    .trust-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    .trust-item {
+      padding: 1rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .trust-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.4rem;
+      font-weight: 500;
+    }
+
+    /* SERVICES */
+    #services {
+      background: var(--off-white);
+      padding: 6rem 4%;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 3.5rem;
+    }
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.7rem;
+      display: block;
+    }
+    .section-header h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .services-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+      border-top: 3px solid var(--blue);
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    }
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .service-cta {
+      display: inline-block;
+      margin-top: 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: 'DM Sans', sans-serif;
+      padding: 0;
+      text-transform: uppercase;
+    }
+    .service-cta:hover { text-decoration: underline; }
+
+    /* ABOUT */
+    #about {
+      background: #fff;
+      padding: 6rem 4%;
+    }
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .about-img-wrap img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      background: var(--navy);
+      color: #fff;
+      padding: 1rem 1.4rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+    .about-badge strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+    }
+    .about-text .section-tag { text-align: left; }
+    .about-text h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+    }
+    .about-text p {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .about-bullets {
+      list-style: none;
+      margin: 1.5rem 0 2rem;
+    }
+    .about-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.92rem;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+    }
+    .about-bullets li::before {
+      content: '✓';
+      color: var(--blue);
+      font-weight: 700;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    /* REVIEWS */
+    #reviews {
+      background: var(--navy);
+      padding: 6rem 4%;
+    }
+    #reviews .section-header h2 { color: #fff; }
+    #reviews .section-header .section-tag { color: var(--gold); }
+    .reviews-note {
+      text-align: center;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: -2rem;
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+    .reviews-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .review-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: transform 0.25s, background 0.25s;
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.09);
+    }
+    .stars {
+      color: #f5a623;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .review-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.72;
+      margin-bottom: 1.3rem;
+      font-style: italic;
+    }
+    .review-author strong {
+      display: block;
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .review-author span {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.05em;
+    }
+
+    /* CONTACT CTA BAND */
+    #contact-band {
+      background: var(--blue);
+      padding: 4.5rem 4%;
+      text-align: center;
+    }
+    #contact-band h2 {
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      color: #fff;
+      margin-bottom: 0.7rem;
+    }
+    #contact-band p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contact-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--blue);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-white:hover { opacity: 0.92; transform: translateY(-2px); }
+    .btn-white-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.8);
+      padding: 0.9rem 2rem;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-white-outline:hover { border-color: #fff; background: rgba(255,255,255,0.12); }
+
+    /* FOOTER */
+    footer {
+      background: #080f17;
+      padding: 2.5rem 4%;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    footer p {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.3rem;
+    }
+    footer a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: #fff; }
+    .footer-divider {
+      width: 40px;
+      height: 2px;
+      background: var(--blue);
+      margin: 1rem auto;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-img-wrap img { height: 320px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .trust-inner { grid-template-columns: 1fr; }
+      .trust-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .trust-item:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preview Banner -->
+  <div id="preview-banner">
+    ✨ Free preview by North Star Digital — <a href="https://northstardigital.digital" target="_blank">northstardigital.digital</a>
+  </div>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <div class="nav-logo">
+      AC and Heat Repair LLC
+      <span>Charlotte's HVAC Experts</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="tel:(704) 923-6575" class="nav-phone">(704) 923-6575</a></li>
+    </ul>
+    <button class="nav-cta" onclick="openQuote()">Get Free Quote</button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Charlotte's Trusted HVAC Specialists</div>
+      <h1>Stay Cool in Summer,<br>Warm All Winter Long</h1>
+      <p>Fast, reliable AC and heating repair, installation, and maintenance for Charlotte-area homes and businesses. Available 7 days a week — no comfort emergencies ignored.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="openQuote()">Get Free Quote</button>
+        <a href="tel:(704) 923-6575" class="btn-outline">Call (704) 923-6575</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section id="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <div class="trust-number">15+</div>
+        <div class="trust-label">Years Serving Charlotte</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-number">4,800+</div>
+        <div class="trust-label">Jobs Completed</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-number">98%</div>
+        <div class="trust-label">Customer Satisfaction Rate</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-header">
+      <span class="section-tag">What We Do</span>
+      <h2>Complete HVAC Services for Charlotte Homeowners</h2>
+      <p>From emergency repairs to new system installations, our certified technicians handle every heating and cooling need with precision and care.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">❄️</span>
+        <h3>AC Repair & Diagnostics</h3>
+        <p>Is your air conditioner blowing warm air or making strange noises? Our certified techs quickly diagnose and fix the problem — same-day service available throughout the Charlotte metro.</p>
+        <button class="service-cta" onclick="openQuote()">Get a Quote →</button>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔥</span>
+        <h3>Heating System Repair</h3>
+        <p>Don't get caught in the cold. We repair all makes and models of furnaces, heat pumps, and electric heating systems. Fast response times when you need warmth most.</p>
+        <button class="service-cta" onclick="openQuote()">Get a Quote →</button>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏠</span>
+        <h3>New HVAC Installation</h3>
+        <p>Ready to upgrade to a high-efficiency system? We install top-rated AC and heating units from leading brands, sized correctly for your home to maximize comfort and savings.</p>
+        <button class="service-cta" onclick="openQuote()">Get a Quote →</button>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔧</span>
+        <h3>Preventive Maintenance</h3>
+        <p>Regular tune-ups extend the life of your HVAC system and catch small problems before they become expensive repairs. Our seasonal maintenance plans keep you covered year-round.</p>
+        <button class="service-cta" onclick="openQuote()">Get a Quote →</button>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💨</span>
+        <h3>Air Quality Solutions</h3>
+        <p>Breathe cleaner air at home. We install and service air purifiers, UV light systems, humidifiers, and advanced filtration units to reduce allergens and improve indoor air quality.</p>
+        <button class="service-cta" onclick="openQuote()">Get a Quote →</button>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌡️</span>
+        <h3>Smart Thermostat Upgrades</h3>
+        <p>Cut energy bills by up to 23% with a smart thermostat installation. We carry and install Nest, Ecobee, and Honeywell products, fully integrated with your existing HVAC system.</p>
+        <button class="service-cta" onclick="openQuote()">Get a Quote →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-img-wrap">
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&q=80" alt="HVAC technician at work" />
+        <div class="about-badge">
+          <strong>15+ Yrs</strong>
+          Serving Charlotte, NC
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-tag">About Us</span>
+        <h2>Charlotte's Dependable HVAC Team, Rain or Shine</h2>
+        <p>AC and Heat Repair LLC was founded right here in Charlotte with one goal: to deliver honest, high-quality HVAC service that homeowners and businesses can count on. We're a locally owned company — not a franchise — so every job we do reflects our reputation in the community.</p>
+        <p>Our licensed technicians carry years of hands-on experience working with all major HVAC brands and system types. We show up on time, explain what we find, and never push unnecessary work. That's a promise we stand behind on every call.</p>
+        <ul class="about-bullets">
+          <li>Licensed & fully insured in North Carolina</li>
+          <li>EPA Section 608 certified technicians</li>
+          <li>Same-day and emergency service available</li>
+          <li>Transparent upfront pricing — no hidden fees</li>
+          <li>Serving Charlotte, Ballantyne, Concord, Huntersville & beyond</li>
+        </ul>
+        <button class="btn-primary" onclick="openQuote()">Schedule Consultation</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="section-header">
+      <span class="section-tag">Customer Reviews</span>
+      <h2>What Charlotte Homeowners Are Saying</h2>
+    </div>
+    <p class="reviews-note">Real reviews pulled from Google upon site launch.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"My AC went out on the hottest day of the year and they had a tech at my door within two hours. Fixed the problem fast, explained everything clearly, and the price was completely fair. I won't call anyone else."</p>
+        <div class="review-author">
+          <strong>Marcus T.</strong>
+          <span>Charlotte, NC</span>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Incredibly professional from start to finish. They installed a new Carrier system in our home and the difference in comfort is night and day. The technician was knowledgeable, clean, and had it running in under four hours."</p>
+        <div class="review-author">
+          <strong>Jennifer R.</strong>
+          <span>Ballantyne, NC</span>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"I've used AC and Heat Repair LLC for two years now — both for repairs and annual tune-ups. They're honest, punctual, and their prices beat every competitor I've tried. Highly recommend to anyone in the Charlotte area."</p>
+        <div class="review-author">
+          <strong>David K.</strong>
+          <span>Huntersville, NC</span>
+        </div>
+      </div>
